@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="colisor.js"></script>
+    <script type="text/javascript" src="circulo.js"></script>
+    <title>Movimentação</title>
+</head>
+<body>
+    <canvas id="meu_canvas" width="500" height="500">
+        seu navegador não suporta essa tecnologia
+    </canvas>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById("meu_canvas");
+        var contexto = canvas.getContext('2d');
+        
+        var c1 = new Circulo(contexto);
+        c1.x = 200;
+        c1.y = 200;
+        c1.velocidadeX = 10;
+        c1.velocidadeY = -5;
+        c1.cor = 'blue';
+        c1.raio = 20;
+        
+        var c2 = new Circulo(contexto);
+        c2.x = 200;
+        c2.y = 200;
+        c2.ve2ocidadeX = -5;
+        c2.velocidadeY = 10;
+        c2.cor = 'red';
+        c2.raio = 30;
+        
+        var colisor = new Colisor();
+        colisor.novoSprite(c1);
+        colisor.novoSprite(c2);
+        
+        colisor.aoColidir = function(s1, s2) {
+            alert('PÁ');
+        };
+
+        
+        requestAnimationFrame(animar);
+        
+        function animar(){
+            contexto.clearRect(0, 0, canvas.width, canvas.height);
+            c1.atualizar();
+            c2.atualizar();
+
+            // Desenhando
+            c1.desenhar();
+            c2.desenhar();
+
+            // Processar colisões
+            colisor.processar();
+
+            requestAnimationFrame(animar);
+            
+        }
+       
+   
+    </script>
+</body>
+</html>
