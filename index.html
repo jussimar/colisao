@@ -7,16 +7,17 @@
     <script type="text/javascript" src="colisor.js"></script>
     <script type="text/javascript" src="circulo.js"></script>
     <title>Movimentação</title>
+
 </head>
 <body>
-    <canvas id="meu_canvas" width="500" height="500">
+    <canvas id="meu_canvas" width="1350" height="642">
         seu navegador não suporta essa tecnologia
     </canvas>
 
     <script type="text/javascript">
         var canvas = document.getElementById("meu_canvas");
         var contexto = canvas.getContext('2d');
-        
+
         var c1 = new Circulo(contexto);
         c1.x = 200;
         c1.y = 200;
@@ -24,7 +25,7 @@
         c1.velocidadeY = -5;
         c1.cor = 'blue';
         c1.raio = 20;
-        
+
         var c2 = new Circulo(contexto);
         c2.x = 200;
         c2.y = 200;
@@ -32,18 +33,18 @@
         c2.velocidadeY = 10;
         c2.cor = 'red';
         c2.raio = 30;
-        
+
         var colisor = new Colisor();
         colisor.novoSprite(c1);
         colisor.novoSprite(c2);
-        
+
         colisor.aoColidir = function(s1, s2) {
             alert('PÁ');
         };
 
-        
+
         requestAnimationFrame(animar);
-        
+
         function animar(){
             contexto.clearRect(0, 0, canvas.width, canvas.height);
             c1.atualizar();
@@ -57,10 +58,10 @@
             colisor.processar();
 
             requestAnimationFrame(animar);
-            
+
         }
-       
-   
+
+
     </script>
 </body>
 </html>
